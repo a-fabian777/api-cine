@@ -9,6 +9,7 @@ import {
 import { Controller, Get, Param, Res } from '@nestjs/common';
 import type { Response } from 'express';
 import { FilesService } from './files.service';
+import { seconds, Throttle } from '@nestjs/throttler';
 
 @ApiTags('Archivos')
 @ApiTooManyRequestsResponse({ description: 'Límite de solicitudes excedido.' })
@@ -34,6 +35,7 @@ export class FilesController {
     },
   })
   @ApiNotFoundResponse({ description: 'No se encontró la imagen solicitada.' })
+  @Throttle({ default: { limit: 30, ttl: seconds(10) } })
   @Get('pelicula/:nombreArchivo')
   mostrarImagenPelicula(
     @Param('nombreArchivo') nombreArchivo: string,

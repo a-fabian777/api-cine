@@ -1,0 +1,25 @@
+name: CI api cine
+on:
+  push:
+    branches: [master]
+env:
+  IMAGEN: ${{ secrets.DOCKER_USERNAME }}/api-cine:${{ github.sha }}
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: instalar-node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      
+      - name: instalar-dependenciar
+        run: npm ci
+
+      - name: ejecucion de pruebas
+        run: npm run test

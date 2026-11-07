@@ -1,0 +1,14 @@
+services:
+	# postgres-cine
+	backend-cine:
+		build:
+			context: .
+			dockerfille: Dockerfile.dev
+		image: imagen-api-cine:1.0.0
+		container_name: backend-api-cine
+		ports:
+			- '3001:300'
+		volumes: 
+			- .:/app
+			- /app/node_modules # sirve para no tener conflictos con las dependencias de otros servicios
+	# fontend-cine: 

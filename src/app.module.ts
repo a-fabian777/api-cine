@@ -12,8 +12,8 @@ import { AuthModule } from './modules/auth/auth.module';
     ThrottlerModule.forRoot({
       throttlers:[
         {
-          ttl: seconds(10),
-          limit:5
+          ttl: seconds(60),
+          limit:100
         }
       ],
       errorMessage: 'Demasiadas Solicitudes'

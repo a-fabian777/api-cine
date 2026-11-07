@@ -7,8 +7,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const logger = new Logger('Bootstrap');
 
+  const cors = process.env.CORS_ORIGIN == '*' ? true : (
+    process.env.CORS_ORIGIN?.split(',').map(dominio => dominio.trim())
+  );
+
   app.enableCors({
-    origin: true,
+    origin: cors,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     credentials: true,
     allowedHeaders: 'Content-Type, Accept, Authorization',
