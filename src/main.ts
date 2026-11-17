@@ -11,6 +11,8 @@ async function bootstrap() {
     process.env.CORS_ORIGIN?.split(',').map(dominio => dominio.trim())
   );
 
+  console.log(cors); 
+
   app.enableCors({
     origin: cors,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
