@@ -43,5 +43,6 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: push-a-docker
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/api-cine:${{ github.sha }} |
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/api-cine:${{ github.sha }}
           echo "imagen subida a docker hub"
